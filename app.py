@@ -9,6 +9,7 @@ from app.services.grafo_service import Grafo
 from app.routes.grafo import grafo_bp
 from app.services.habilidades_service import GrafoDirigido
 from app.routes.habilidades_grafo import habilidades_grafo_bp
+from app.routes.combate import combates_bp
 
 app = create_app()
 
@@ -39,6 +40,8 @@ app.register_blueprint(grafo_bp, url_prefix='/api/grafo')
 app.register_blueprint(habilidades_grafo_bp, url_prefix='/api/habilidades_grafo')
 
 app.register_blueprint(grafo_bp, url_prefix='/api/grafo')
+
+app.register_blueprint(combates_bp, url_prefix='/api/combates')
 
 if __name__ == '__main__':
     app.run(debug=True)

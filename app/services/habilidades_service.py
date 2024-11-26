@@ -1,4 +1,6 @@
 from collections import defaultdict, deque
+from app.models.habilidad import Habilidad
+from config.database import db
 
 class GrafoDirigido:
     """
@@ -51,3 +53,54 @@ class GrafoDirigido:
         else:
             # Hay un ciclo en el grafo
             return None
+
+class HabilidadService:
+    @staticmethod
+    def agregar_habilidad(nombre_habilidad, habilidad_padre=None):
+        """
+        Agrega una nueva habilidad y la relaciona con una habilidad padre si es proporcionada.
+        :param nombre_habilidad: Nombre de la nueva habilidad.
+        :param habilidad_padre: Nombre de la habilidad padre.
+        """
+        habilidad = Habilidad.query.filter_by(nombre=nombre_habilidad).first()
+        if habilidad:
+            raise ValueError(f"La habilidad '{nombre_habilidad}' ya existe.")
+
+        habilidad_padre_obj = None
+        if habilidad_padre:
+            habilidad_padre_obj = Habilidad.query.filter_by(nombre=habilidad_padre).first()
+            if not habilidad_padre_obj:
+                raise ValueError(f"La habilidad padre '{habilidad_padre}' no existe.")
+
+        nueva_habilidad = Habilidad(
+            nombre=nombre_habilidad,
+            habilidad_padre_id=habilidad_padre_obj.id if habilidad_padre_obj else None
+        )
+
+        db.session.add(nueva_habilidad)
+        db.session.commit()
+        return f"Habilidad '{nombre_habilidad}' agregada exitosamente."
+
+    @staticmethod
+    def mostrar_arbol():
+        """
+        Muestra el árbol jerárquico de habilidades.
+        """
+        def _recolectar_habilidades(habilidad):
+            return {
+                "nombre": habilidad.nombre,
+                "habilidades_hijas": [
+                    _recolectar_habilidades(hija) for hija in habilidad.habilidades_hijas
+                ]
+            }
+
+        habilidades_raiz = Habilidad.query.filter_by(habilidad_padre_id=None).all()
+        return [_recolectar_habilidades(habilidad) for habilidad in habilidades_raiz]
+
+    @staticmethod
+    def buscar_habilidad(nombre_habilidad):
+        """
+        Busca una habilidad por nombre.
+        """
+        habilidad = Habilidad.query.filter_by(nombre=nombre_habilidad).first()
+        return habilidad if habilidad else None
