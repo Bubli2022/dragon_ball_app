@@ -207,15 +207,6 @@ Parte 1: Teoría y Realización Práctica
    o Garantiza que siempre tengamos acceso rápido al personaje con mayor prioridad (nivel de poder más alto).
    o Mejora la fluidez del torneo al automatizar la gestión de combates.
 
-Resumen Comparativo
-Funcionalidad Estructura Usada Complejidad Temporal Complejidad Espacial Ventajas Clave
-Batallas Comparación directa O(1)O(1)O(1) O(1)O(1)O(1) Simplicidad y rapidez en enfrentamientos individuales.
-Evolución de Poder Recursión O(n)O(n)O(n) O(n)O(n)O(n) Representación natural de transformaciones.
-Organización de Datos Árbol Binario de Búsqueda O(log⁡n)O(\log n)O(logn)\* O(n)O(n)O(n) Búsqueda e inserción eficientes, escalabilidad.
-Gestión de Torneos Cola de Prioridades (Heap) O(log⁡n)O(\log n)O(logn) O(n)O(n)O(n) Priorización automática, ideal para torneos grandes.
-
--  O(log⁡n)O(\log n)O(logn) en ABB balanceado; O(n)O(n)O(n) en peor caso desbalanceado.
-
 Parte 2: Codificación y Algoritmos
 
 1. Grafos (Unidad 7):
@@ -341,6 +332,7 @@ Explicación del Código
 3. Pruebas:
    o Creamos planetas y rutas entre ellos, incluyendo distancias.
    o Calculamos la ruta más corta desde "Tierra" a "Planeta Freezer". El programa devuelve tanto la distancia mínima como la secuencia de planetas a recorrer.
+
 4. Recorridos DFS y BFS (Unidad 8):
    Uso de Algoritmos DFS y BFS
    Para resolver el problema de buscar a personajes desaparecidos en el universo de Dragon Ball, implementamos los algoritmos DFS (Depth-First Search) y BFS (Breadth-First Search). Ambos son adecuados para recorrer un grafo y buscar un nodo objetivo, pero tienen diferencias clave que influyen en su selección según el escenario:
@@ -477,17 +469,18 @@ Explicación del Código
    o Se usa un diccionario para almacenar las conexiones de cada planeta.
 2. Métodos de Búsqueda:
    o DFS:
-    Utiliza recursión para explorar en profundidad.
-    Mantiene un conjunto de planetas visitados y una lista para almacenar el camino actual.
-    Si no encuentra el objetivo en un camino, retrocede (backtracking).
+   • Utiliza recursión para explorar en profundidad.
+   • Mantiene un conjunto de planetas visitados y una lista para almacenar el camino actual.
+   • Si no encuentra el objetivo en un camino, retrocede (backtracking).
    o BFS:
-    Utiliza una cola para explorar los nodos en amplitud.
-    Devuelve el camino más corto en términos de número de aristas.
+   • Utiliza una cola para explorar los nodos en amplitud.
+   • Devuelve el camino más corto en términos de número de aristas.
 3. Pruebas:
    o Se construyó un grafo con planetas y rutas espaciales.
    o Se probó la búsqueda desde "Tierra" hasta "Planeta Freezer" usando ambos algoritmos:
-    DFS: Encontró un camino explorando en profundidad.
-    BFS: Encontró el camino más corto en términos de pasos.
+   • DFS: Encontró un camino explorando en profundidad.
+   • BFS: Encontró el camino más corto en términos de pasos.
+
 4. Ordenamiento Topológico (Unidad 9):
    Uso de Ordenamiento Topológico para Planificar Entrenamientos
    Para planificar las etapas de entrenamiento de un personaje en Dragon Ball, utilizamos el ordenamiento topológico aplicado a un grafo dirigido acíclico (DAG). En este contexto:
@@ -596,32 +589,35 @@ Explicación del Código
    o agregar_habilidad: Añade nodos al grafo.
    o agregar_dependencia: Define una dependencia entre habilidades (arista dirigida).
    o orden_topologico: Implementa el algoritmo de Kahn para realizar el ordenamiento topológico:
-    Inicia con nodos de grado de entrada 0 (sin dependencias).
+   • Inicia con nodos de grado de entrada 0 (sin dependencias).
     Procesa los nodos uno por uno, reduciendo el grado de entrada de sus vecinos y añadiendo nuevos nodos con grado 0 a la cola.
-    Si al final todos los nodos son procesados, devuelve el orden; de lo contrario, detecta un ciclo en las dependencias.
+   • Si al final todos los nodos son procesados, devuelve el orden; de lo contrario, detecta un ciclo en las dependencias.
 3. Pruebas:
    o Creamos un sistema de habilidades con dependencias jerárquicas:
-    "Kaioken" debe dominarse antes de "Kaioken x2", que a su vez es requisito para "Kaioken x20".
-    "Super Saiyajin" habilita "Super Saiyajin 2", que es requisito para "Ultra Instinto".
+   • "Kaioken" debe dominarse antes de "Kaioken x2", que a su vez es requisito para "Kaioken x20".
+   • "Super Saiyajin" habilita "Super Saiyajin 2", que es requisito para "Ultra Instinto".
    o El ordenamiento topológico devuelve el orden correcto de aprendizaje:
 
-Orden de entrenamiento: ['Kaioken', 'Kaioken x2', 'Kaioken x20', 'Super Saiyajin', 'Super Saiyajin 2', 'Ultra Instinto'] 4. Problemas NP y Camino Mínimo (Unidad 10):
-Teoría y Resolución del Problema del Camino Mínimo con Dijkstra
-Teoría: Uso del Algoritmo de Dijkstra
-Para resolver el problema de encontrar la mejor ruta en el universo de Dragon Ball para recolectar las Esferas del Dragón lo más rápido posible, usamos el algoritmo de Dijkstra. Este es un algoritmo eficiente que calcula el camino más corto desde un nodo inicial (planeta) a todos los demás nodos en un grafo ponderado.
-En nuestro caso:
-• Nodos: Representan los planetas del universo de Dragon Ball.
-• Aristas: Representan las rutas espaciales entre planetas.
-• Pesos: Representan el tiempo o la distancia necesaria para viajar entre planetas.
-Por qué Elegimos Dijkstra
+Orden de entrenamiento: ['Kaioken', 'Kaioken x2', 'Kaioken x20', 'Super Saiyajin', 'Super Saiyajin 2', 'Ultra Instinto']
+
+4. Problemas NP y Camino Mínimo (Unidad 10):
+   Teoría y Resolución del Problema del Camino Mínimo con Dijkstra
+   Teoría: Uso del Algoritmo de Dijkstra
+   Para resolver el problema de encontrar la mejor ruta en el universo de Dragon Ball para recolectar las Esferas del Dragón lo más rápido posible, usamos el algoritmo de Dijkstra. Este es un algoritmo eficiente que calcula el camino más corto desde un nodo inicial (planeta) a todos los demás nodos en un grafo ponderado.
+   En nuestro caso:
+   • Nodos: Representan los planetas del universo de Dragon Ball.
+   • Aristas: Representan las rutas espaciales entre planetas.
+   • Pesos: Representan el tiempo o la distancia necesaria para viajar entre planetas.
+   Por qué Elegimos Dijkstra
 
 1. Eficiencia:
    o Tiene una complejidad de O((V+E)⋅log⁡V)O((V + E) \cdot \log V)O((V+E)⋅logV), donde VVV es el número de nodos y EEE el número de aristas. Esto lo hace ideal para grafos moderadamente densos como los del universo de Dragon Ball.
-2. Aplicación Directa:
+1. Aplicación Directa:
    o Permite calcular rutas óptimas hacia todos los planetas, lo que es esencial para recolectar las Esferas del Dragón de manera eficiente.
-3. Mejora de la Jugabilidad:
+1. Mejora de la Jugabilidad:
    o Desde el punto de vista del jugador, este enfoque permite optimizar el tiempo de desplazamiento entre planetas, lo que mejora la fluidez y la estrategia en el juego.
    o Interfaz Clara: Proporciona una visualización de las rutas más cortas y los costos asociados, ayudando al jugador a planificar sus movimientos.
+
    Beneficios Adicionales
    • El uso de Dijkstra asegura que se evalúen todas las posibles rutas de manera sistemática y eficiente.
    • Su integración en el juego permite representar desafíos realistas relacionados con la logística espacial, lo que enriquece la experiencia del jugador.
@@ -728,10 +724,10 @@ Explicación del Código
    o Representa un grafo ponderado no dirigido, donde los nodos son planetas y las aristas tienen pesos que representan la distancia o tiempo de viaje.
 2. Métodos Principales:
    o dijkstra:
-    Calcula la distancia mínima desde un nodo inicial a todos los demás nodos utilizando una cola de prioridad.
-    También registra los predecesores para reconstruir los caminos más cortos.
+   • Calcula la distancia mínima desde un nodo inicial a todos los demás nodos utilizando una cola de prioridad.
+   • También registra los predecesores para reconstruir los caminos más cortos.
    o reconstruir_camino:
-    Reconstruye la ruta más corta desde el nodo inicial hasta un nodo destino, utilizando el diccionario de predecesores generado por Dijkstra.
+   • Reconstruye la ruta más corta desde el nodo inicial hasta un nodo destino, utilizando el diccionario de predecesores generado por Dijkstra.
 3. Pruebas:
    o Creamos un mapa del universo de Dragon Ball con planetas y rutas espaciales.
    o Calculamos las distancias mínimas desde "Tierra" a todos los planetas.
