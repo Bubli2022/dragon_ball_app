@@ -60,22 +60,22 @@ Parte 1: Teoría y Realización Práctica
    Explicación del Código
 1. Clase Personaje:
    Creamos esta clase para encapsular todos los atributos esenciales de un personaje. Al usar un método **str**, facilitamos la visualización de la información del personaje en el juego.
-1. Interfaces:
+2. Interfaces:
    o GestionCombates se encarga de ejecutar combates comparando los niveles de poder. Optamos por usar un método estático porque las acciones no dependen del estado interno de una instancia de la interfaz.
    o SubidaNivel y GestionHabilidades permiten aumentar el nivel de poder y agregar habilidades, asegurando un sistema modular y reutilizable.
-1. Modularidad y Expansión:
+3. Modularidad y Expansión:
    La implementación de interfaces separadas asegura que cada funcionalidad esté desacoplada. Esto facilita futuras expansiones del juego, como la introducción de nuevos tipos de habilidades o ajustes en las mecánicas de combate.
-1. Buenas Prácticas:
+4. Buenas Prácticas:
    o Uso de documentación en los métodos.
    o Métodos reutilizables, como el de aprender_habilidad, que evita duplicados al agregar habilidades.
    Este diseño mejora la fluidez del juego porque organiza y optimiza la lógica en segmentos manejables y personalizables.
 
-1. Estructuras Recursivas (Unidad 2):
+2. Estructuras Recursivas (Unidad 2):
    Para esta sección, diseñamos un algoritmo recursivo que permite calcular la evolución del nivel de poder de un personaje tras cada combate, aplicando multiplicadores derivados de transformaciones como Super Saiyajin o Kaioken. Elegimos una solución recursiva porque este enfoque permite modelar el proceso incremental de los combates de manera natural, especialmente cuando hay varias transformaciones aplicadas consecutivamente.
    La recursión nos ofrece las siguientes ventajas:
 1. Claridad Conceptual: Cada llamada recursiva representa un combate, lo que facilita visualizar la secuencia de transformaciones y el efecto acumulativo de los multiplicadores.
-1. Simplicidad del Código: La lógica del cálculo se reduce a unas pocas líneas, eliminando la necesidad de estructuras iterativas más complejas.
-1. Modularidad: Podemos integrar fácilmente nuevos multiplicadores o reglas de transformación sin modificar la estructura general del algoritmo.
+2. Simplicidad del Código: La lógica del cálculo se reduce a unas pocas líneas, eliminando la necesidad de estructuras iterativas más complejas.
+3. Modularidad: Podemos integrar fácilmente nuevos multiplicadores o reglas de transformación sin modificar la estructura general del algoritmo.
    Desde el punto de vista del usuario, esta solución mejora la interfaz del juego porque permite que las transformaciones sean procesadas dinámicamente, mostrando al jugador cómo su nivel de poder se incrementa tras cada combate. Además, los multiplicadores pueden ser personalizados, ofreciendo una experiencia de juego más inmersiva.
    En términos de rendimiento, aseguramos que el algoritmo sea eficiente al limitar la profundidad de las llamadas recursivas al número de combates realizados, lo que es manejable dentro de las limitaciones de Python. También se incluyeron casos base para evitar recursiones infinitas y garantizar una ejecución controlada.
    Explicación del Código
@@ -83,16 +83,16 @@ Parte 1: Teoría y Realización Práctica
    o nivel_poder_inicial: Representa el nivel de poder del personaje antes de aplicar los multiplicadores.
    o multiplicadores: Es una lista de factores que representan las transformaciones (ejemplo: Kaioken x1.5 o Super Saiyajin x2).
    o indice: Controla qué multiplicador se aplica en cada llamada recursiva.
-1. Caso Base:
+2. Caso Base:
    Si el índice actual supera el tamaño de la lista de multiplicadores, la recursión termina y devuelve el nivel de poder calculado hasta el momento. Esto asegura que no haya recursiones infinitas.
-1. Llamada Recursiva:
+3. Llamada Recursiva:
    En cada iteración, se aplica el multiplicador actual al nivel de poder y se realiza una llamada recursiva con el siguiente índice. Esto asegura que cada transformación se procese en el orden correcto.
 
-1. Árboles Binarios (Unidad 3):
+3. Árboles Binarios (Unidad 3):
    En nuestro trabajo, optamos por usar un Árbol Binario de Búsqueda (ABB) para organizar los personajes según su nivel de poder. Esta estructura fue seleccionada porque permite:
 1. Búsqueda Rápida: En un ABB, la búsqueda de elementos (como el personaje más fuerte o el más débil) tiene una complejidad promedio de O(log⁡n)O(\log n)O(logn), lo que hace que las consultas sean rápidas incluso con un gran número de personajes.
-1. Inserción Eficiente: Cada nuevo personaje se puede insertar en tiempo O(log⁡n)O(\log n)O(logn), siempre y cuando el árbol esté balanceado.
-1. Ordenación Natural: Los elementos en un ABB están organizados automáticamente de forma que los valores menores se encuentran en el subárbol izquierdo y los valores mayores en el derecho. Esto facilita la identificación del personaje más fuerte (ubicado en el nodo más a la derecha).
+2. Inserción Eficiente: Cada nuevo personaje se puede insertar en tiempo O(log⁡n)O(\log n)O(logn), siempre y cuando el árbol esté balanceado.
+3. Ordenación Natural: Los elementos en un ABB están organizados automáticamente de forma que los valores menores se encuentran en el subárbol izquierdo y los valores mayores en el derecho. Esto facilita la identificación del personaje más fuerte (ubicado en el nodo más a la derecha).
    Desde el punto de vista del jugador, esta implementación mejora la interfaz del juego al permitir:
    • Selección eficiente de los rivales más fuertes: Enfrentar al personaje con mayor nivel de poder en un torneo o combate.
    • Flexibilidad: Se pueden añadir personajes dinámicamente sin necesidad de reordenar toda la lista de niveles de poder.
@@ -101,35 +101,35 @@ Parte 1: Teoría y Realización Práctica
    Explicación del Código
 1. Clase Nodo:
    Cada nodo del árbol almacena el nivel de poder y el nombre del personaje, además de los punteros a los nodos izquierdo y derecho.
-1. Clase ArbolBinarioDeBusqueda:
+2. Clase ArbolBinarioDeBusqueda:
    Esta clase maneja todas las operaciones relacionadas con el árbol, como insertar nodos, buscar el personaje más fuerte y recorrer el árbol en orden ascendente.
-1. Operaciones Principales:
+3. Operaciones Principales:
    o Inserción: Se realiza de forma recursiva, comparando el nivel de poder del nuevo personaje con el nodo actual para determinar si debe ir al subárbol izquierdo o derecho.
    o Búsqueda del Más Fuerte: Recorremos siempre hacia el nodo más a la derecha del árbol, ya que este contiene el nivel de poder más alto en un ABB.
    o Recorrido en Orden: Genera una lista de personajes ordenados de menor a mayor nivel de poder, lo que puede ser útil para mostrar clasificaciones en el juego.
-1. Pruebas:
+4. Pruebas:
    o Insertamos personajes como Goku, Vegeta y Broly con diferentes niveles de poder.
    o Verificamos que el árbol encuentra correctamente al personaje más fuerte ("Broly") y genera la lista ordenada de niveles de poder.
 
-1. Árboles Generales (Unidad 4):
+4. Árboles Generales (Unidad 4):
    En esta sección, utilizamos un Árbol General para modelar el sistema de habilidades de los personajes en el juego de Dragon Ball. Cada nodo representa una habilidad específica, mientras que sus hijos representan las transformaciones o mejoras que se derivan de esa habilidad. Por ejemplo:
    • El nodo "Kamehameha" tiene como hijos "Kamehameha x10" y "Kamehameha Definitivo".
    • De forma similar, "Kaioken" puede tener hijos como "Kaioken x2" o "Kaioken x20".
    Elegimos esta estructura por varias razones:
 1. Flexibilidad en la Representación: Un Árbol General permite que cada nodo tenga un número variable de hijos, lo cual es ideal para representar habilidades que pueden tener múltiples derivaciones o mejoras.
-1. Organización Jerárquica: El árbol refleja de manera intuitiva la progresión de habilidades, mostrando claramente qué transformaciones dependen de habilidades base.
-1. Búsquedas y Navegación Eficientes: Con recorridos en profundidad o amplitud, podemos encontrar rápidamente si un personaje tiene una habilidad específica o listar todas las mejoras derivadas de una técnica.
-1. Interfaz Mejorada para el Usuario: Para el jugador, esta estructura permite visualizar de manera clara las técnicas disponibles y sus posibles evoluciones, mejorando la experiencia de juego y la planificación estratégica.
+2. Organización Jerárquica: El árbol refleja de manera intuitiva la progresión de habilidades, mostrando claramente qué transformaciones dependen de habilidades base.
+3. Búsquedas y Navegación Eficientes: Con recorridos en profundidad o amplitud, podemos encontrar rápidamente si un personaje tiene una habilidad específica o listar todas las mejoras derivadas de una técnica.
+4. Interfaz Mejorada para el Usuario: Para el jugador, esta estructura permite visualizar de manera clara las técnicas disponibles y sus posibles evoluciones, mejorando la experiencia de juego y la planificación estratégica.
    Desde el punto de vista técnico, el Árbol General proporciona una solución escalable, ya que se puede extender fácilmente a medida que se agreguen nuevas habilidades o transformaciones. Además, esta estructura está alineada con los conceptos vistos en la materia, como la representación jerárquica de datos y los recorridos de árboles.
    Explicación del Código
 1. Clase NodoHabilidad:
    Representa cada habilidad del personaje. Cada nodo puede tener una cantidad variable de hijos, lo que permite modelar fácilmente las transformaciones derivadas.
-1. Clase ArbolHabilidades:
+2. Clase ArbolHabilidades:
    Maneja el árbol general. Ofrece funcionalidades para:
    o Agregar habilidades: Permite añadir nuevas técnicas como mejoras de una habilidad existente.
    o Buscar habilidades: Realiza una búsqueda en profundidad para encontrar un nodo por su nombre.
    o Mostrar el árbol: Recorre el árbol y presenta las habilidades de manera jerárquica, facilitando su visualización.
-1. Operaciones Básicas:
+3. Operaciones Básicas:
    o Creamos un árbol inicial con la habilidad raíz ("Kamehameha").
    o Agregamos derivaciones como "Kamehameha x10" y "Kamehameha Definitivo".
    o Mostramos la estructura completa del árbol en un formato jerárquico.
@@ -137,35 +137,35 @@ Parte 1: Teoría y Realización Práctica
    Pruebas:
    El programa muestra correctamente las habilidades en una estructura jerárquica y permite buscar y agregar habilidades dinámicamente.
 
-1. Cola de Prioridades y Heap Binaria (Unidad 5):
+5. Cola de Prioridades y Heap Binaria (Unidad 5):
    Para esta sección, decidimos implementar una cola de prioridades utilizando una heap binaria para gestionar los enfrentamientos en un torneo. Esta estructura nos permite organizar los personajes de manera que aquellos con el nivel de poder más alto tengan prioridad en los combates.
    Optamos por usar una cola de prioridades basada en un heap binario por las siguientes razones:
 1. Eficiencia:
    o La inserción y extracción de elementos en una cola de prioridades basada en heap tienen una complejidad de O(log⁡n)O(\log n)O(logn), lo cual es ideal para manejar un gran número de personajes.
    o Esto garantiza que el sistema pueda gestionar torneos grandes sin afectar el rendimiento.
-1. Orden Dinámico:
+2. Orden Dinámico:
    o La cola reorganiza automáticamente a los personajes según su nivel de poder cada vez que se realiza una operación de inserción o extracción. Esto asegura que siempre podamos acceder al personaje más fuerte en tiempo O(1)O(1)O(1).
-1. Aplicación en Torneos:
+3. Aplicación en Torneos:
    o En un torneo, es crucial que los enfrentamientos sean justos y emocionantes. Al priorizar a los personajes más fuertes, el sistema puede organizar combates donde los participantes tengan habilidades similares o donde los más fuertes lideren las primeras rondas.
-1. Interfaz Mejorada para el Usuario:
+4. Interfaz Mejorada para el Usuario:
    o Para el jugador, esta implementación permite una visualización clara de los participantes del torneo, destacando quién tiene mayor prioridad para los enfrentamientos.
    En resumen, esta estructura no solo mejora la fluidez del sistema, sino que también es escalable y está alineada con los conceptos aprendidos en la materia, como el manejo eficiente de datos mediante estructuras avanzadas.
    Explicación del Código
 1. Clase Torneo:
    o Implementamos una cola de prioridades utilizando el módulo heapq de Python, que por defecto maneja un min-heap.
    o Para convertirlo en un max-heap, almacenamos los niveles de poder como negativos al insertar en la cola, y los restauramos a positivos al extraer.
-1. Operaciones Principales:
+2. Operaciones Principales:
    o Agregar personajes:
    Los personajes se añaden a la cola junto con su nivel de poder. Gracias a la estructura del heap, la cola se reorganiza automáticamente para mantener al personaje más fuerte al frente.
    o Siguiente enfrentamiento:
    Extraemos al personaje con el mayor nivel de poder para participar en el próximo combate. Esta operación se realiza en O(log⁡n)O(\log n)O(logn).
    o Mostrar participantes:
    Ordenamos y listamos a los personajes según su prioridad actual en la cola, facilitando la visualización del torneo.
-1. Pruebas:
+3. Pruebas:
    o Se agregaron personajes como Goku, Vegeta y Broly con diferentes niveles de poder.
    o El sistema seleccionó correctamente al personaje más fuerte (Goku, con nivel de poder 9000) para el primer combate, seguido por Vegeta y los demás en orden decreciente.
 
-1. Análisis de Algoritmos (Unidad 6):
+6. Análisis de Algoritmos (Unidad 6):
    En esta sección, analizamos la eficiencia de los algoritmos implementados en el proyecto para las batallas, la evolución de poder y la organización de los personajes. Evaluamos su complejidad temporal y espacial, justificando por qué las estructuras elegidas mejoran la fluidez del juego y optimizan la experiencia del usuario.
 1. Batallas: Gestión con Comparación Directa
    Para las batallas, utilizamos una comparación directa entre los niveles de poder de dos personajes. Este enfoque tiene una complejidad de O(1)O(1)O(1), ya que solo involucra una operación de comparación sin depender del tamaño de los datos.
@@ -175,7 +175,7 @@ Parte 1: Teoría y Realización Práctica
    • Limitaciones:
    o No es escalable si queremos gestionar múltiples batallas simultáneamente.
    o Para resolver esta limitación, se complementa con la cola de prioridades en los torneos.
-1. Evolución de Poder: Algoritmo Recursivo
+2. Evolución de Poder: Algoritmo Recursivo
    Para calcular la evolución del nivel de poder tras las transformaciones, usamos un algoritmo recursivo que aplica multiplicadores en cascada.
    • Complejidad Temporal:
    o En el peor caso, el algoritmo realiza nnn llamadas recursivas, donde nnn es el número de multiplicadores, con una complejidad de O(n)O(n)O(n).
@@ -184,7 +184,7 @@ Parte 1: Teoría y Realización Práctica
    • Ventajas:
    o Permite una implementación limpia y clara, representando de manera natural el proceso de evolución en cascada.
    o Mejora la experiencia del usuario al reflejar de forma lógica y progresiva cómo cambian los niveles de poder.
-1. Organización de Personajes: Árbol Binario de Búsqueda
+3. Organización de Personajes: Árbol Binario de Búsqueda
    Para organizar a los personajes según su nivel de poder, usamos un Árbol Binario de Búsqueda (ABB).
    • Complejidad Temporal:
    o Inserción: O(log⁡n)O(\log n)O(logn) en un árbol balanceado, ya que solo recorremos una rama del árbol.
@@ -195,7 +195,7 @@ Parte 1: Teoría y Realización Práctica
    • Ventajas:
    o Es una solución escalable que asegura búsquedas e inserciones rápidas para gestionar muchos personajes.
    o Permite listar a los personajes en orden, lo que facilita la visualización del ranking por poder.
-1. Gestión de Torneos: Cola de Prioridades con Heap Binario
+4. Gestión de Torneos: Cola de Prioridades con Heap Binario
    Para los torneos, usamos una cola de prioridades implementada con un heap binario.
    • Complejidad Temporal:
    o Inserción: O(log⁡n)O(\log n)O(logn) por operación.
@@ -217,8 +217,8 @@ Parte 2: Codificación y Algoritmos
    • Pesos: Representan la distancia o tiempo necesario para viajar entre dos planetas.
    Esta estructura es ideal porque:
 1. Flexibilidad: Permite representar eficientemente las conexiones entre planetas. Si se agregan nuevos planetas o rutas, es fácil actualizar el grafo.
-1. Gestión de Rutas: Podemos usar algoritmos de grafos (como Dijkstra o Floyd-Warshall) para calcular la ruta más corta entre dos planetas, mejorando la experiencia de juego al optimizar viajes para entrenamiento o combate.
-1. Escalabilidad: A medida que el universo crece (nuevos planetas o galaxias), el modelo sigue siendo eficiente y fácil de mantener.
+2. Gestión de Rutas: Podemos usar algoritmos de grafos (como Dijkstra o Floyd-Warshall) para calcular la ruta más corta entre dos planetas, mejorando la experiencia de juego al optimizar viajes para entrenamiento o combate.
+3. Escalabilidad: A medida que el universo crece (nuevos planetas o galaxias), el modelo sigue siendo eficiente y fácil de mantener.
    Fluidez para el Usuario
    Desde el punto de vista del jugador:
    • Esta implementación mejora la interfaz al permitirles elegir rutas basadas en distancia o tiempo de viaje.
@@ -333,13 +333,13 @@ Explicación del Código
    o Creamos planetas y rutas entre ellos, incluyendo distancias.
    o Calculamos la ruta más corta desde "Tierra" a "Planeta Freezer". El programa devuelve tanto la distancia mínima como la secuencia de planetas a recorrer.
 
-4. Recorridos DFS y BFS (Unidad 8):
+2. Recorridos DFS y BFS (Unidad 8):
    Uso de Algoritmos DFS y BFS
    Para resolver el problema de buscar a personajes desaparecidos en el universo de Dragon Ball, implementamos los algoritmos DFS (Depth-First Search) y BFS (Breadth-First Search). Ambos son adecuados para recorrer un grafo y buscar un nodo objetivo, pero tienen diferencias clave que influyen en su selección según el escenario:
-5. DFS (Depth-First Search):
+1. DFS (Depth-First Search):
    o Realiza un recorrido en profundidad, explorando cada ruta hasta el final antes de retroceder y buscar otras alternativas.
    o Es ideal para escenarios donde buscamos caminos largos o queremos explorar rutas específicas, como en áreas menos conectadas del universo.
-6. BFS (Breadth-First Search):
+2. BFS (Breadth-First Search):
    o Realiza un recorrido en amplitud, explorando todos los vecinos de un nodo antes de avanzar.
    o Es más adecuado para encontrar el camino más corto en términos de número de aristas, como cuando un personaje desaparecido está cerca del punto de partida.
    Ventajas para el Usuario
@@ -481,19 +481,19 @@ Explicación del Código
    • DFS: Encontró un camino explorando en profundidad.
    • BFS: Encontró el camino más corto en términos de pasos.
 
-4. Ordenamiento Topológico (Unidad 9):
+3. Ordenamiento Topológico (Unidad 9):
    Uso de Ordenamiento Topológico para Planificar Entrenamientos
    Para planificar las etapas de entrenamiento de un personaje en Dragon Ball, utilizamos el ordenamiento topológico aplicado a un grafo dirigido acíclico (DAG). En este contexto:
    • Nodos: Representan las habilidades o técnicas que el personaje puede aprender (por ejemplo, "Kaioken", "Kaioken x2", "Super Saiyajin").
    • Aristas dirigidas: Representan las dependencias entre habilidades, indicando que una técnica debe dominarse antes de desbloquear otra.
    Por qué Elegimos el Ordenamiento Topológico
-5. Gestión de Dependencias:
+1. Gestión de Dependencias:
    o El ordenamiento topológico asegura que las técnicas sean aprendidas en el orden correcto, respetando las dependencias definidas.
    o Por ejemplo, un personaje no puede aprender "Kaioken x20" antes de dominar "Kaioken x2".
-6. Eficiencia y Escalabilidad:
+2. Eficiencia y Escalabilidad:
    o Este enfoque es eficiente (O(V+E)O(V + E)O(V+E), donde VVV es el número de habilidades y EEE el número de dependencias).
    o Escalable a medida que se añaden nuevas habilidades o jerarquías más complejas al sistema de entrenamiento.
-7. Fluidez para el Usuario:
+3. Fluidez para el Usuario:
    o Desde el punto de vista del jugador, este sistema permite visualizar claramente las etapas de entrenamiento, mostrando qué habilidades deben desbloquearse antes de avanzar.
    o Mejora la experiencia del jugador al proporcionar una guía estructurada del progreso.
    Beneficios Adicionales
@@ -612,9 +612,9 @@ Orden de entrenamiento: ['Kaioken', 'Kaioken x2', 'Kaioken x20', 'Super Saiyajin
 
 1. Eficiencia:
    o Tiene una complejidad de O((V+E)⋅log⁡V)O((V + E) \cdot \log V)O((V+E)⋅logV), donde VVV es el número de nodos y EEE el número de aristas. Esto lo hace ideal para grafos moderadamente densos como los del universo de Dragon Ball.
-1. Aplicación Directa:
+2. Aplicación Directa:
    o Permite calcular rutas óptimas hacia todos los planetas, lo que es esencial para recolectar las Esferas del Dragón de manera eficiente.
-1. Mejora de la Jugabilidad:
+3. Mejora de la Jugabilidad:
    o Desde el punto de vista del jugador, este enfoque permite optimizar el tiempo de desplazamiento entre planetas, lo que mejora la fluidez y la estrategia en el juego.
    o Interfaz Clara: Proporciona una visualización de las rutas más cortas y los costos asociados, ayudando al jugador a planificar sus movimientos.
 
