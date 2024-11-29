@@ -50,7 +50,7 @@ Este juego podría aplicar funcionamientos como:
 
 Parte 1: Teoría y Realización Práctica
 
-1. Desarrollo de Clases e Interfaces (Unidad 1):
+#1. Desarrollo de Clases e Interfaces (Unidad 1):
    Nuestro grupo eligió diseñar una clase principal Personaje que encapsule los atributos esenciales para un sistema de juego de Dragon Ball. Este diseño se basa en la modularidad y la claridad, asegurando que cada aspecto del personaje esté bien definido y sea fácil de manipular mediante métodos y estructuras de datos eficientes.
    Además, implementamos interfaces para manejar acciones comunes como gestionar combates, subir de nivel y adquirir habilidades. Estas interfaces nos permiten abstraer las acciones y mantener la flexibilidad para futuros cambios o expansiones en el juego. Por ejemplo:
    • Gestión de Combates: Facilita la ejecución de una batalla entre dos personajes, evaluando sus niveles de poder y habilidades.
@@ -70,7 +70,7 @@ Parte 1: Teoría y Realización Práctica
    o Métodos reutilizables, como el de aprender_habilidad, que evita duplicados al agregar habilidades.
    Este diseño mejora la fluidez del juego porque organiza y optimiza la lógica en segmentos manejables y personalizables.
 
-2. Estructuras Recursivas (Unidad 2):
+#2. Estructuras Recursivas (Unidad 2):
    Para esta sección, diseñamos un algoritmo recursivo que permite calcular la evolución del nivel de poder de un personaje tras cada combate, aplicando multiplicadores derivados de transformaciones como Super Saiyajin o Kaioken. Elegimos una solución recursiva porque este enfoque permite modelar el proceso incremental de los combates de manera natural, especialmente cuando hay varias transformaciones aplicadas consecutivamente.
    La recursión nos ofrece las siguientes ventajas:
 1. Claridad Conceptual: Cada llamada recursiva representa un combate, lo que facilita visualizar la secuencia de transformaciones y el efecto acumulativo de los multiplicadores.
@@ -88,7 +88,7 @@ Parte 1: Teoría y Realización Práctica
 3. Llamada Recursiva:
    En cada iteración, se aplica el multiplicador actual al nivel de poder y se realiza una llamada recursiva con el siguiente índice. Esto asegura que cada transformación se procese en el orden correcto.
 
-3. Árboles Binarios (Unidad 3):
+#3. Árboles Binarios (Unidad 3):
    En nuestro trabajo, optamos por usar un Árbol Binario de Búsqueda (ABB) para organizar los personajes según su nivel de poder. Esta estructura fue seleccionada porque permite:
 1. Búsqueda Rápida: En un ABB, la búsqueda de elementos (como el personaje más fuerte o el más débil) tiene una complejidad promedio de O(log⁡n)O(\log n)O(logn), lo que hace que las consultas sean rápidas incluso con un gran número de personajes.
 2. Inserción Eficiente: Cada nuevo personaje se puede insertar en tiempo O(log⁡n)O(\log n)O(logn), siempre y cuando el árbol esté balanceado.
@@ -111,7 +111,7 @@ Parte 1: Teoría y Realización Práctica
    o Insertamos personajes como Goku, Vegeta y Broly con diferentes niveles de poder.
    o Verificamos que el árbol encuentra correctamente al personaje más fuerte ("Broly") y genera la lista ordenada de niveles de poder.
 
-4. Árboles Generales (Unidad 4):
+#4. Árboles Generales (Unidad 4):
    En esta sección, utilizamos un Árbol General para modelar el sistema de habilidades de los personajes en el juego de Dragon Ball. Cada nodo representa una habilidad específica, mientras que sus hijos representan las transformaciones o mejoras que se derivan de esa habilidad. Por ejemplo:
    • El nodo "Kamehameha" tiene como hijos "Kamehameha x10" y "Kamehameha Definitivo".
    • De forma similar, "Kaioken" puede tener hijos como "Kaioken x2" o "Kaioken x20".
@@ -137,7 +137,7 @@ Parte 1: Teoría y Realización Práctica
    Pruebas:
    El programa muestra correctamente las habilidades en una estructura jerárquica y permite buscar y agregar habilidades dinámicamente.
 
-5. Cola de Prioridades y Heap Binaria (Unidad 5):
+#5. Cola de Prioridades y Heap Binaria (Unidad 5):
    Para esta sección, decidimos implementar una cola de prioridades utilizando una heap binaria para gestionar los enfrentamientos en un torneo. Esta estructura nos permite organizar los personajes de manera que aquellos con el nivel de poder más alto tengan prioridad en los combates.
    Optamos por usar una cola de prioridades basada en un heap binario por las siguientes razones:
 1. Eficiencia:
@@ -165,7 +165,7 @@ Parte 1: Teoría y Realización Práctica
    o Se agregaron personajes como Goku, Vegeta y Broly con diferentes niveles de poder.
    o El sistema seleccionó correctamente al personaje más fuerte (Goku, con nivel de poder 9000) para el primer combate, seguido por Vegeta y los demás en orden decreciente.
 
-6. Análisis de Algoritmos (Unidad 6):
+#6. Análisis de Algoritmos (Unidad 6):
    En esta sección, analizamos la eficiencia de los algoritmos implementados en el proyecto para las batallas, la evolución de poder y la organización de los personajes. Evaluamos su complejidad temporal y espacial, justificando por qué las estructuras elegidas mejoran la fluidez del juego y optimizan la experiencia del usuario.
 1. Batallas: Gestión con Comparación Directa
    Para las batallas, utilizamos una comparación directa entre los niveles de poder de dos personajes. Este enfoque tiene una complejidad de O(1)O(1)O(1), ya que solo involucra una operación de comparación sin depender del tamaño de los datos.
@@ -209,7 +209,7 @@ Parte 1: Teoría y Realización Práctica
 
 Parte 2: Codificación y Algoritmos
 
-1. Grafos (Unidad 7):
+#1. Grafos (Unidad 7):
    Representación del Universo como un Grafo
    Para modelar el universo de Dragon Ball, optamos por usar un grafo no dirigido ponderado, donde:
    • Nodos: Representan los planetas del universo (por ejemplo, Tierra, Namek, Vegeta, etc.).
@@ -333,7 +333,7 @@ Explicación del Código
    o Creamos planetas y rutas entre ellos, incluyendo distancias.
    o Calculamos la ruta más corta desde "Tierra" a "Planeta Freezer". El programa devuelve tanto la distancia mínima como la secuencia de planetas a recorrer.
 
-2. Recorridos DFS y BFS (Unidad 8):
+#2. Recorridos DFS y BFS (Unidad 8):
    Uso de Algoritmos DFS y BFS
    Para resolver el problema de buscar a personajes desaparecidos en el universo de Dragon Ball, implementamos los algoritmos DFS (Depth-First Search) y BFS (Breadth-First Search). Ambos son adecuados para recorrer un grafo y buscar un nodo objetivo, pero tienen diferencias clave que influyen en su selección según el escenario:
 1. DFS (Depth-First Search):
@@ -481,7 +481,7 @@ Explicación del Código
    • DFS: Encontró un camino explorando en profundidad.
    • BFS: Encontró el camino más corto en términos de pasos.
 
-3. Ordenamiento Topológico (Unidad 9):
+#3. Ordenamiento Topológico (Unidad 9):
    Uso de Ordenamiento Topológico para Planificar Entrenamientos
    Para planificar las etapas de entrenamiento de un personaje en Dragon Ball, utilizamos el ordenamiento topológico aplicado a un grafo dirigido acíclico (DAG). En este contexto:
    • Nodos: Representan las habilidades o técnicas que el personaje puede aprender (por ejemplo, "Kaioken", "Kaioken x2", "Super Saiyajin").
@@ -600,7 +600,7 @@ Explicación del Código
 
 Orden de entrenamiento: ['Kaioken', 'Kaioken x2', 'Kaioken x20', 'Super Saiyajin', 'Super Saiyajin 2', 'Ultra Instinto']
 
-4. Problemas NP y Camino Mínimo (Unidad 10):
+#4. Problemas NP y Camino Mínimo (Unidad 10):
    Teoría y Resolución del Problema del Camino Mínimo con Dijkstra
    Teoría: Uso del Algoritmo de Dijkstra
    Para resolver el problema de encontrar la mejor ruta en el universo de Dragon Ball para recolectar las Esferas del Dragón lo más rápido posible, usamos el algoritmo de Dijkstra. Este es un algoritmo eficiente que calcula el camino más corto desde un nodo inicial (planeta) a todos los demás nodos en un grafo ponderado.
